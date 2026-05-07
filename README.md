@@ -176,3 +176,159 @@ La clase `Libro` junta todo lo aprendido: constructor, métodos que validan el e
 ![Ejemplo practico biblioteca](images/ejemplo_practico_biblioteca2.png)
 
 
+## Encapsulación en Python
+
+### Explicación de cada ejemplo
+
+#### 1. Atributos privados por convención
+
+En Python, ponemos un guion bajo antes del nombre (`_saldo`) para avisar que ese atributo es interno y no debería tocarse desde fuera. Aún así, el lenguaje lo permite.
+
+Aquí creamos una cuenta de banco y vemos que podemos leer el saldo directamente, aunque no es buena idea.
+
+![Atributos privados convencion](images/atributos_privados_convencion.png)
+
+#### 2. Atributos con doble guion bajo
+
+Cuando usamos dos guiones bajos (`__pin`), Python cambia el nombre interno para que sea más difícil acceder por accidente. El atributo solo se puede usar desde dentro de la clase mediante métodos.
+
+En el ejemplo intentamos leer `cuenta.__pin` y falla, pero se puede acceder si se conoce el truco (`_CuentaBancaria__pin`), aunque eso está mal visto.
+
+![Atributos con doble guion](images/atributos_privados_guiones.png)
+
+#### 3. Validación en el constructor
+
+El material muestra la clase `Producto`, que valida que el precio no sea negativo. En el código original solo aparece la definición de la clase; no incluye una ejecución de prueba.
+
+Para poder observar cómo funciona la validación, al final del archivo agregamos una pequeña demostración: intentamos crear un producto con precio negativo y capturamos el error que se genera.
+
+La clase permanece exactamente igual a la del documento, y la prueba adicional nos permite comprobar que el `ValueError` se lanza correctamente.
+
+![Producto con validacion](images/producto_validacion.png)
+
+#### 4. Atributos protegidos vs. privados en herencia
+
+Los atributos con un guion bajo (`_marca`) pueden usarse en clases hijas. Los que tienen dos guiones bajos (`__modelo`) no son visibles desde la clase hija.
+
+La clase `Coche` intenta mostrar el modelo y falla, mientras que la marca sí la puede usar.
+
+![Privados y protegidos](images/privados_vs_protegidos.png)
+
+#### 5. Getters y setters
+
+Para acceder a atributos privados de forma controlada, creamos métodos como `get_nombre()` y `set_nombre()`. Así podemos validar los valores antes de guardarlos.
+
+En la prueba vemos que se puede cambiar el nombre y la edad, pero si intentamos poner una edad negativa se produce un error.
+
+![Getters y setters](images/persona_getters_setters1.png)
+![Getters y setters](images/persona_getters_setters2.png)
+
+#### 6. Producto con getters y setters
+
+La clase `Producto` tiene métodos para obtener y modificar nombre, precio, stock y descuento. Al pedir el precio se aplica el descuento automáticamente.
+
+Probamos a crear un portátil, aplicar un 15% de descuento, vender una unidad, y tratar de poner un precio negativo.
+
+![Producto getters setters](images/producto_getters_setters1.png)
+![Producto getters setters](images/producto_getters_setters2.png)
+![Producto getters setters](images/producto_getters_setters3.png)
+
+#### 7. Herencia y setters
+
+Aquí vemos cómo una clase hija (`Electrónico`) hereda todo lo bueno de `Producto` y además le agrega sus propias reglas.  
+`Electrónico` tiene un atributo nuevo (`_garantía_meses`) y modifica el método `set_precio` de la clase padre: cuando el nuevo precio supera los 1000, la garantía se alarga automáticamente a 24 meses (si era menor).
+
+Al ejecutar el archivo se crea un televisor con precio 1500 y garantía de 12 meses. Luego se le sube el precio a 2000 y, como es mayor que 1000, la garantía sube sola a 24 meses. Así se prueba que la lógica adicional funciona sin tocar la clase original.
+
+![Herencia y setters](images/electronica_herencia1.png)
+![Herencia y setters](images/electronica_herencia2.png)
+![Herencia y setters](images/electronica_herencia3.png)
+
+#### 8. Temperatura con propiedades
+Con `@property` y `@celsius.setter` accedemos a la temperatura en grados Celsius o Fahrenheit como si fueran simples variables. Si intentamos poner una temperatura imposible, salta un error.
+
+![Temperatura con propiedades](images/propiedades_temperatura.png)
+![Temperatura con propiedades](images/propiedades_temperatura2.png)
+
+#### 9. Propiedad con deleter
+
+Además de getter y setter, podemos definir un `@amigos.deleter` que se ejecuta al usar `del`. En este ejemplo, al devolver la lista de amigos entregamos una copia para que no se modifique la original sin control. Al hacer `del`, se vacía la lista.
+
+![Propiedades con deleter](images/propiedades_persona_deleter1.png)
+![Propiedades con deleter](images/propiedades_persona_deleter2.png)
+
+#### 10. Propiedades de solo lectura
+
+El área y el perímetro de un círculo se calculan a partir del radio, pero no tienen sentido si alguien las escribe directamente. Al omitir el setter, esas propiedades quedan de solo lectura.
+
+![Propiedades Lectura](images/propiedades_solo_lectura1.png)
+![Propiedades Lectura](images/propiedades_solo_lectura2.png)
+
+#### 11. Propiedades calculadas
+
+El salario total se calcula automáticamente con la fórmula base + horas extra × tarifa. Si cambiamos las horas o la tarifa, el salario total se actualiza solo.
+
+![Propiedades calculadas](images/propiedades_calculadas1.png)
+![Propiedades calculadas](images/propiedades_calculadas2.png)
+
+#### 12. De getters a propiedades
+
+Se muestra cómo empezar con atributos públicos, luego meter getters/setters clásicos y finalmente pasarse a propiedades. La versión final (`ProductoV3`) se usa igual que la primera (`ProductoV1`), pero con validación incluida.
+
+![getters a propiedades](images/propiedades_migracion1.png)
+![getters a propiedades](images/propiedades_migracion2.png)
+
+#### 13. Propiedades en herencia
+
+La clase `ProductoDigital` hereda de `Producto` y añade la propiedad `tamaño_mb`. Además sobrescribe `info` para mostrar el tamaño. Al modificar el precio o el tamaño, la propiedad `info` se adapta.
+
+![Propiedades en herencia](images/propiedades_herencia.png)
+![Propiedades en herencia](images/propiedades_herencia2.png)
+
+#### 14. Método privado `__generar_hash` 
+
+La clase `Autenticador` guarda la contraseña como un código cifrado (hash). Para hacer ese cálculo usa el método privado `__generar_hash`. Luego, el método público `verificar_contraseña` vuelve a usar ese mismo método para comparar.
+
+![metodo privado](images/autenticador_metodo_privado.png)
+
+
+#### 15. Varios métodos privados trabajando juntos
+
+`ProcesadorTexto` limpia y analiza un archivo de texto. Los pasos (leer, normalizar, calcular estadísticas) están en métodos privados. El único método público coordina el trabajo y luego otros públicos entregan los resultados.
+
+![Procesador de texto](images/procesador_texto_metodos_privados.png)
+![Procesador de texto](images/procesador_texto_metodos_privados2.png)
+
+#### 16. Métodos privados vs. funciones auxiliares
+
+Si la ayuda solo sirve dentro de un método, puede ser una función interna. Si la necesitan varios métodos de la clase, mejor un método privado. El ejemplo muestra dos formas equivalentes de duplicar números.
+
+![metodos privados vs funciones](images/metodos_privados_vs_funciones.png)
+
+#### 17. Métodos privados en herencia
+
+Los métodos con `__` no se pueden llamar directamente desde una clase hija. La clase `Derivada` intenta usar `__método_privado` y falla. Sin embargo, el método heredado de `Base` sí puede acceder al suyo.
+
+![Metodos privados en herencia](images/metodos_privados_herencia.png)
+
+#### 18. Métodos protegidos en herencia
+
+Usando un solo guion bajo (`_obtener_área`) indicamos que es un método pensado para que las subclases lo sobrescriban. `Círculo` y `Rectángulo` heredan de `Forma` y cada uno calcula su área a su manera.
+
+![Metodos protegidos en herencia](images/metodos_protegidos_herencia.png)
+![Metodos protegidos en herencia](images/metodos_protegidos_herencia2.png)
+
+#### 19. Validación compleja con métodos privados 
+
+La clase `Formulario` recibe datos (nombre, email, contraseña, edad) y los revisa automáticamente. El método `validar` coordina todo, pero el trabajo real lo hacen cuatro métodos privados:
+
+- **Campos requeridos**: verifica que los datos importantes no estén vacíos.
+- **Email**: comprueba que tenga formato de correo (con @ y punto).
+- **Contraseña**: exige mínimo 8 caracteres, una mayúscula y un número.
+- **Edad**: valida que sea un número entre 18 y 120.
+
+Cada método guarda sus errores y luego `obtener_errores` los entrega. Así, quien usa la clase solo llama a `validar` y no se mete en cómo se hacen las comprobaciones. Si una regla cambia, se modifica un solo método sin tocar el resto.
+
+![Validacion compleja](images/formulario_metodos_privados1.png)
+![Validacion compleja](images/formulario_metodos_privados2.png)
+![Validacion compleja](images/formulario_metodos_privados3.png)
