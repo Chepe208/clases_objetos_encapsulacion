@@ -398,3 +398,79 @@ La función `main()` ejecuta estas pruebas:
 ## Ejemplo de ejecución
 
 ![Captura del taller](images/cuenta_bancaria.png)
+
+## Sistema de Préstamos de Equipos
+
+Proyecto integrador del módulo **Fundamentos de Python: Clases, Objetos y Encapsulación**, que implementa un sistema de gestión de préstamos de equipos utilizando listas, tuplas y diccionarios.
+
+### Lógica aplicada
+
+El programa simula el control de un inventario de equipos (computadores, proyectores, tabletas, etc.) dentro de una institución. Permite registrar préstamos, devoluciones, consultar el historial y agregar nuevos equipos. 
+
+Se diseñó siguiendo un enfoque modular: cada operación principal está encapsulada en una función independiente. La estructura de datos central es un **diccionario anidado** donde cada clave es el nombre del equipo y su valor contiene:
+- `disponible`: booleano que indica el estado.
+- `prestamos`: **lista** de **tuplas** inmutables `(usuario, fecha)` que almacenan el historial.
+
+### Funcionalidades
+
+- **Ver equipos disponibles**: muestra todos los equipos con su estado actual (Disponible / Prestado).
+- **Registrar préstamo**: permite prestar un equipo disponible, registrando usuario y fecha automática.
+- **Devolver equipo**: marca un equipo prestado como disponible nuevamente.
+- **Ver historial**: lista todos los préstamos registrados por equipo.
+- **Agregar equipo**: incorpora un nuevo equipo al inventario.
+- **Menú interactivo**: navegación intuitiva desde la terminal.
+
+### Ejemplos de ejecución
+
+## Ejemplos de ejecución
+
+### Menú principal y opción 1 – Ver equipos
+Se muestra el menú del sistema y el inventario inicial con los tres equipos en estado "Disponible".
+![Menú inicial](images/sistema1.png)
+
+### Opción 2 – Registrar préstamo
+Se selecciona "Laptop HP", se ingresa el usuario "Carlos Gómez" y el sistema confirma el préstamo con la fecha actual.
+
+![Registrar préstamo](images/sistema2.png)
+
+### Opción 1 – Ver equipos después del préstamo
+El inventario refleja que "Laptop HP" ahora aparece como "Prestado".
+![Ver equipos después del préstamo](images/sistema3.png)
+
+### Opción 2 – Intentar prestar el mismo equipo
+El sistema rechaza la operación porque "Laptop HP" no está disponible.
+![Intento de préstamo rechazado](images/sistema4.png)
+
+### Opción 4 – Ver historial de préstamos
+Se muestra el historial con el préstamo registrado: usuario "Carlos Gómez" y la fecha correspondiente.
+
+![Ver historial](images/sistema5.png)
+
+### Opción 3 – Devolver equipo
+Se devuelve "Laptop HP". El sistema confirma que ahora está disponible.
+![Devolver equipo](images/sistema6.png)
+
+### Opción 1 – Verificar devolución
+El inventario vuelve a mostrar "Laptop HP" como "Disponible".
+![Verificar devolución](images/sistema7.png)
+
+### Opción 5 – Agregar nuevo equipo
+Se agrega "Cámara Web Logitech" al inventario y el sistema confirma el registro exitoso.
+![Agregar equipo](images/sistema8.png)
+
+### Opción 1 – Inventario ampliado
+Se listan los cuatro equipos: los tres originales más la cámara recién agregada.
+![Inventario final](images/sistema9.png)
+
+### Opción 6 – Salir del sistema
+El programa se despide con un mensaje y termina la ejecución.
+![Salir del sistema](images/sistema10.png)
+
+
+## Reflexión personal sobre aprendizajes y retos superados
+
+Al principio, programar orientado a objetos se veia dificil porque veia clases y objetos como algo muy complejo. Pero viendo los ejemplos y hacer los talleres, lo iba entendiendo. Entendí que una clase es un molde y que cada objeto tiene su propia información y comportamiento.
+
+El mayor reto fue el Sistema de Préstamos de Equipos.Tuve que juntar todo lo que habia visto en los ejemplos como las listas, las tuplas,los diccionarios y funciones. Tuve errores en las validaciones que no funcionaban o datos que no se guardaban bien, pero probando cada parte hice que funcionara. Esos errores me enseñaron a tener mas cuidado.
+
+Aprendí que programar no es solo escribir código, sino pensar antes, probar y corregir con paciencia. Fue un reto grande, pero estoy contento con lo que logré.
