@@ -363,3 +363,38 @@ En la función `main()` se crean dos libros (`Don Quijote de la Mancha` y `Cien 
 
 ![Captura del taller](images/libro1.png)
 ![Captura del taller](images/libro2.png)
+
+## Taller de Encapsulación – Cuenta Bancaria
+
+Este proyecto resuelve el taller de encapsulación del material de formación. Se implementa la clase `CuentaBancaria` con atributos privados y propiedades, siguiendo las buenas prácticas de Python.
+
+## ¿Qué hace la clase?
+
+Representa una cuenta bancaria con:
+
+- **Atributos privados:** `_titular` (cadena) y `_saldo` (número decimal).
+- **Propiedad `titular` (solo lectura):** permite consultar el titular, pero no cambiarlo.
+- **Propiedad `saldo` (lectura/escritura con validación):** permite leer y modificar el saldo, pero **no acepta valores negativos** (lanza un `ValueError` con el mensaje `"El saldo no puede ser negativo"`).
+- **Método `depositar(cantidad)`:** aumenta el saldo si la cantidad es mayor que cero. Retorna `True` si se efectuó el depósito, `False` en otro caso.
+- **Método `retirar(cantidad)`:** reduce el saldo solo si hay fondos suficientes y la cantidad es positiva. Retorna `True` si se realizó el retiro, `False` en otro caso.
+
+El constructor recibe el titular y un saldo inicial (por defecto 0).
+
+## Pruebas realizadas
+
+La función `main()` ejecuta estas pruebas:
+
+1. Creación de una cuenta con titular y saldo inicial.
+2. Consulta del titular (propiedad de solo lectura).
+3. Cambio de saldo con un valor válido.
+4. Intento de asignar un saldo negativo (captura del `ValueError`).
+5. Depósito con cantidad positiva (debe ser exitoso).
+6. Depósito con cantidad negativa (debe fallar).
+7. Retiro con fondos suficientes (exitoso).
+8. Retiro con fondos insuficientes (fallido).
+9. Retiro con cantidad negativa (fallido).
+10. Muestra del estado final.
+
+## Ejemplo de ejecución
+
+![Captura del taller](images/cuenta_bancaria.png)
