@@ -332,3 +332,34 @@ Cada método guarda sus errores y luego `obtener_errores` los entrega. Así, qui
 ![Validacion compleja](images/formulario_metodos_privados1.png)
 ![Validacion compleja](images/formulario_metodos_privados2.png)
 ![Validacion compleja](images/formulario_metodos_privados3.png)
+
+## Taller Clases y Objetos – Sistema de Biblioteca
+
+Este proyecto resuelve el taller propuesto en el material de formación. Consiste en crear la clase `Libro` y probar sus métodos para gestionar el préstamo y la devolución de libros.
+
+### ¿Qué hace la clase `Libro`?
+
+La clase representa un libro de una biblioteca. Guarda su título, autor, número de páginas y si está disponible o prestado.
+
+Tiene tres métodos:
+
+- **`prestar()`**: Si el libro está disponible, lo marca como prestado y avisa. Si ya estaba prestado, lo comunica.
+- **`devolver()`**: Si el libro estaba prestado, lo devuelve a la biblioteca. Si ya estaba disponible, lo indica.
+- **`informacion()`**: Entrega una ficha con todos los datos del libro y su estado actual.
+
+### ¿Cómo se probó?
+
+En la función `main()` se crean dos libros (`Don Quijote de la Mancha` y `Cien años de soledad`). Luego se ejecuta este paso a paso:
+
+1. Muestra la información inicial (ambos disponibles).
+2. Presta los dos libros.
+3. Intenta prestar el primero otra vez (debe decir que no está disponible).
+4. Muestra la información actualizada.
+5. Devuelve el primer libro.
+6. Intenta devolverlo de nuevo (ya estaba disponible).
+7. Muestra la información final de ambos.
+
+## Ejemplo de ejecución
+
+![Captura del taller](images/libro1.png)
+![Captura del taller](images/libro2.png)
